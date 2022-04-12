@@ -2,14 +2,12 @@
 
 using namespace irc;
 
-// TODO check name validity
 Server::Server (std::string password, const char* port) : password(password), port(port) {
 	std::cout << "Initializating server..." << std::endl;
 	this->users = std::vector<User *>();
 	this->channels = std::vector<Channel *>();
 	this->pfds = std::vector<pollfd>();
 	this->conf = std::map<std::string, std::string>();
-	// TODO recuperate info from .conf file
 }
 
 Server::~Server () {
