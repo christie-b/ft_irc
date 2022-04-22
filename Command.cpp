@@ -601,6 +601,8 @@ void Command::intKick() {
 		irc::numericReply(461, user, params);
 		return ;
 	}
+	// std::cout << "vec[0]: " << vec[0] << std::endl;
+	// std::cout << "vec[1]: " << vec[1] << std::endl;
 	vec_chan_names = irc::split(vec[0], ",", 0);
 	vec_usernames = irc::split(vec[1], ",", 0);
 	if (vec[2].size() > 0)
@@ -615,14 +617,15 @@ void Command::intKick() {
 		irc::numericReply(461, user, params);
 		return ;
 	}
-	if (vec_chan_names.size() > 1)
-	{
+	// if (vec_chan_names.size() > 1)
+	// {
+		// std::cout << "GETTING HERE?\n";
 		i = 0;
 		while (i < vec_chan_names.size())
 		{
 			chan_found = NULL;
 			name = vec_chan_names[i];
-			user_str = vec_usernames[i];
+			user_str = trim(vec_usernames[i], ":");
 			if (name[0] != '&' && name[0] != '#' && name[0] != '+' && name[0] !=  '!')
 				name.insert(0, "#");
 			chan_found = server.getChannelByName(name);
@@ -631,9 +634,10 @@ void Command::intKick() {
 				params.push_back(name);
 				irc::numericReply(403, user, params);
 			}
-			if (chan_found->userIsInChanFromUsername(user_str) == 0)	// ERR_USERNOTINCHANNEL
+			if (chan_found->userIsInChanFromNickname(user_str) == 0)	// ERR_USERNOTINCHANNEL
 			{
-				params.push_back(user_str);
+				// std::cout << "user_str: |" << user_str << "|" << std::endl;
+				// params.push_back(user_str);
 				params.push_back(name);
 				irc::numericReply(441, user, params);
 				i++;
@@ -641,12 +645,14 @@ void Command::intKick() {
 			}
 			else
 			{
-				chan_found->deleteUser((chan_found->getUserFromUsername(user_str)), message);
+				chan_found->deleteUser((chan_found->getUserFromNickname(user_str)), message);
+				std::cout << "DELETE... LISTING:\n";
+				chan_found->listAllUsersInChan(user);
 				// TODO : modify message to : "KICK chan_name user_kicking :reason"
 			}
 			i++;
 		}
-	}
+	// }
 	return ;
 }
 
@@ -807,8 +813,8 @@ void	 Command::intMode() {
 	std::vector<std::string> 	params;
 
 	vec = irc::split(param, " ", 0);
-	std::cout << "vec[0]: " << vec[0] << std::endl;
-	std::cout << "vec[1]: " << vec[1] << std::endl;
+	// std::cout << "vec[0]: " << vec[0] << std::endl;
+	// std::cout << "vec[1]: " << vec[1] << std::endl;
 	// std::cout << "vec[2]: " << vec[2] << std::endl;
 	user->mode(user, vec[1]);
 	/*

@@ -102,7 +102,7 @@ int	irc::sendNumeric(int fd, std::string msg) {
 /* 433 */ std::string	irc::ErrNicknameInUse (std::string nick) { return (" " + nick + " :Nickname is already in use"); }
 // 436 - No need
 // 437 - No need
-/* 441 */ std::string	irc::ErrUserNotInChannel (std::string nick, std::string channel) { return (" " + nick + " " + channel +" : They aren't on that channel"); }
+/* 441 */ std::string	irc::ErrUserNotInChannel (std::string nick, std::string channel) { return (" " + nick + " " + channel + " : They aren't on that channel"); }
 /* 442 */ std::string	irc::ErrNotOnChannel (std::string channel) { return (" " + channel + " :You're not on that channel"); }
 /* 443 */ std::string	irc::ErrUserOnChannel (std::string user, std::string channel) { return (" " + user + " " + channel +" :is already on channel"); }
 /* 444 */ std::string	irc::ErrNoLogin (std::string user) { return (" " + user + " :Not logged in"); }

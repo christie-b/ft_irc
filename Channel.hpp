@@ -54,6 +54,7 @@ namespace irc
 			std::vector<User *>	getVecChanBannedUsers();
 			std::string			getChanNameAndTopic();
 			User*				getUserFromUsername(std::string username);
+			User*				getUserFromNickname(std::string username);
 
 			void				setChanPassword(std::string password);
 			int					isOperator(User* user);

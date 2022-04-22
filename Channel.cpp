@@ -75,6 +75,19 @@ User* Channel::getUserFromUsername(std::string username) {
 	return (NULL);
 };
 
+User* Channel::getUserFromNickname(std::string nickname) {
+	unsigned long i;
+
+	i = 0;
+	while (i < vec_chan_users.size())
+	{
+		if (vec_chan_users[i]->getNickname() == nickname)
+			return (vec_chan_users[i]);
+		i++;
+	}
+	return (NULL);
+};
+
 void	Channel::setChanPassword(std::string password) {
 	chan_password = password;
 };
@@ -209,7 +222,8 @@ int Channel::listAllUsersInChan(User* user_asking)
 			names += "@";
 		}
 		names += vec_chan_users[i]->getNickname();
-		names += " ";
+		if (i < vec_chan_users.size() - 1)
+			names += " ";
 	}
 	std::cout << names << std::endl;
 	params.push_back(names);
@@ -296,6 +310,8 @@ int Channel::addUser(User* user_to_add)
 int Channel::deleteUser(User* user_to_delete, std::string message) {
 	std::string msg;
 
+	if (!user_to_delete)
+		return (-1);
 	msg = ":" + user_to_delete->getNickname() + "!" + user_to_delete->getUsername() + "@" + user_to_delete->getHostname();
 	msg += " " + message + "\r\n";
 	std::cout << msg << std::endl;
