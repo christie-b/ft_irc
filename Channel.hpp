@@ -75,7 +75,7 @@ namespace irc
 			int							listAllUsersInChan(User* user_asking);
 			int							writeToAllChanUsers(std::string sentence_to_send, User* to_avoid);
 			int							addUser(User* user_to_add);
-			int							deleteUser(User* user_to_delete, std::string message);
+			int							deleteUser(User* user_to_delete, std::string message, bool kick = false);
 			int							addOperator(User* operator_adding, User* operator_to_add);
 			int							deleteOperator(User* operator_deleting, User* operator_to_delete);
 			int							addBannedUser(User* user_banning, User* user_to_ban);
