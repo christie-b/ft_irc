@@ -1,7 +1,7 @@
 # ft_irc
 > Project for 42's school
 
-Team's members : [christie-b](https://github.com/christie-b) and [opacaud](https://github.com/opacaud)
+Team's members : [Ala-Na](https://github.com/Ala-Na) and [opacaud](https://github.com/opacaud)
 
 [![cboutier's 42 ft_irc Score](https://badge42.vercel.app/api/v2/cl1f9y1k8000609jsc4a29jay/project/2548071)](https://github.com/JaeSeoKim/badge42)
 
